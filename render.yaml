@@ -1,30 +1,34 @@
-version: '3.8'
 services:
-  tarantool:
-    image: tarantool/tarantool:3.4.0
+  - type: web
+    name: tarantool
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.tarantool
+    autoDeploy: true
+    envVars:
+      - key: TARANTOOL_USER_NAME
+        value: admin
+      - key: TARANTOOL_USER_PASSWORD
+        value: admin
     ports:
-      - "3301:3301"
-    volumes:
-      - ./init.lua:/opt/tarantool/init.lua
-      - tarantool_data:/var/lib/tarantool
-    environment:
-      - TARANTOOL_USER_NAME=admin
-      - TARANTOOL_USER_PASSWORD=admin
-    command: tarantool /opt/tarantool/init.lua
+      - 3301
 
-  kv-storage:
-    build: .
+  - type: web
+    name: kv-storage
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: TARANTOOL_HOST
+        value: tarantool
+      - key: TARANTOOL_PORT
+        value: 3301
+      - key: TARANTOOL_USERNAME
+        value: admin
+      - key: TARANTOOL_PASSWORD
+        value: admin
     ports:
-      - "8080:8080"
-    depends_on:
-      - tarantool
-    environment:
-      - TARANTOOL_HOST=tarantool
-      - TARANTOOL_PORT=3301
-      - TARANTOOL_USERNAME=admin
-      - TARANTOOL_PASSWORD=admin
-    volumes:
-      - ./config:/app/config
-
-volumes:
-  tarantool_data:
+      - 8080
+    dependsOn:
+      - serviceName: tarantool
