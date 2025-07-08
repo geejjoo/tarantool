@@ -185,7 +185,7 @@ kv-storage/
 └── README.md
 ```
 
-## ⚙️ Конфигурация
+## Конфигурация
 
 ### config/config.yaml
 ```yaml
@@ -223,43 +223,3 @@ tarantool:
 - Latency
 - Rate limiting статистика
 - Connection pool статистика
-
-## Сценарии использования
-
-### Разработка
-```bash
-# 1. Клонировать проект
-git clone <repository-url>
-cd kv-storage
-
-# 2. Настроить окружение
-make dev-setup
-
-# 3. Запустить
-make dev
-```
-
-### Продакшн
-```bash
-# 1. Клонировать проект
-git clone <repository-url>
-cd kv-storage
-
-# 2. Запустить через Docker
-docker-compose up -d
-
-# 3. Проверить статус
-docker-compose ps
-```
-
-### Тестирование
-```bash
-# Запустить все тесты
-make test-all
-
-# Запустить только unit тесты
-make test
-
-# Запустить тесты с покрытием
-make test-coverage
-```
