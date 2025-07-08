@@ -1,0 +1,15 @@
+app:
+  name: "kv-storage"
+  environment: "development"
+
+http_server:
+  port: "8080"
+  read_timeout: "30s"
+  write_timeout: "30s"
+
+tarantool:
+  host: "localhost"
+  port: 3301
+  username: "admin"
+  password: "admin"
+  timeout: "5s"
