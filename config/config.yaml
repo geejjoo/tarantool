@@ -8,7 +8,7 @@ http_server:
   write_timeout: "30s"
 
 tarantool:
-  host: tarantool
+  host: "localhost"
   port: 3301
   username: "admin"
   password: "admin"
