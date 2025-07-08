@@ -10,8 +10,6 @@ services:
         value: admin
       - key: TARANTOOL_USER_PASSWORD
         value: admin
-    ports:
-      - 3301
 
   - type: web
     name: kv-storage
@@ -28,7 +26,3 @@ services:
         value: admin
       - key: TARANTOOL_PASSWORD
         value: admin
-    ports:
-      - 8080
-    dependsOn:
-      - serviceName: tarantool
